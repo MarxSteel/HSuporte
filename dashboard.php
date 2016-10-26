@@ -70,205 +70,67 @@ require_once 'queryDashboard.php';
  </section>
  <section class="content">
   <div class="row">
-  <?php if ($PermMontagem == "9") { ?> 
-   <div class="col-md-3 col-sm-6 col-xs-12">
+   <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="box box-widget widget-user">
      <div class="info-box">
-      <a href="P2/Montagem.php" >
-       <span class="info-box-icon btn-primary"><i class="fa fa-wrench"></i></span>
-      </a>
-      <div class="info-box-content"><h4>NOVO EQUIPAMENTO</h4></div>
-     </div>
-     <div class="box-footer no-padding">
-      <ul class="nav nav-stacked">
-       <li>
-        <a>Meta Prevista <span class="pull-right badge bg-blue"><?php echo $MetaPrevista; ?></span></a>
-       </li>
-       <li>
-        <a>Meta Alacançada <span class="pull-right badge bg-red"><?php echo $MetaRealizada; ?></span></a>
-       </li>
-       <?php 
-        echo '<li><div class="progress progress active">';
-        echo '<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:' . porcentagem_nnx ( $MetaRealizada, $MetaPrevista) . '%">';
-       ?>  
-      </ul>               
-     </div><!-- box-footer no-padding -->
-    </div><!-- box box-widget widget-user -->
-   </div><!-- col-md-3 col-sm-6 col-xs-12 -->
-   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="box box-widget widget-user">
-     <div class="info-box">
-      <a href="P2/Pendentes.php" >
-       <span class="info-box-icon btn-danger">
-        <i class="fa fa-exclamation-triangle"></i>
+      <a href="atendimento/dashboard.php" >
+       <span class="info-box-icon bg-aqua">
+        <i class="fa fa-spinner"></i>
        </span>
       </a>
-      <div class="info-box-content"><h4>EQUIPAMENTOS PENDENTES</h4></div>
-     </div>
-     <div class="box-footer no-padding">
-      <ul class="nav nav-stacked">
-       <li>
-        <a>Pendentes Acesso<span class="pull-right badge bg-green">
-         <?php echo $QntPendentesAcesso; ?></span></a>
-       </li>
-       <li>
-        <a>Pendentes 1510<span class="pull-right badge bg-red">
-         <?php echo $QntPendentes1510; ?></span></a>
-       </li>
-       <li>
-        <a>Pendentes 373 <span class="pull-right badge bg-blue">
-         <?php echo $QntPendentes373; ?></span></a>
-       </li>
-      </ul>
-     </div>                   
-    </div>
-   </div>
-   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="box box-widget widget-user">
-     <div class="info-box">
-      <a href="P2/MeusEquips.php" >
-       <span class="info-box-icon bg-olive">
-        <i class="fa fa-child"></i>
-       </span>
-      </a>
-      <div class="info-box-content"><h4>MEUS EQUIPAMENTOS</h4></div>
-     </div>
-     <div class="box-footer no-padding">
-      <ul class="nav nav-stacked">
-       <li>
-        <a>Acesso<span class="pull-right badge bg-green">
-         <?php echo $QntMontadosAcesso; ?></span></a>
-       </li>
-       <li>
-        <a>Ponto 1510/INMETRO<span class="pull-right badge bg-red">
-        <?php echo $QntMontados1510; ?></span></a>
-       </li>
-       <li>
-        <a>Ponto 373 <span class="pull-right badge bg-blue">
-         <?php echo $QntMontados373; ?>
-        </span></a>
-       </li>
-      </ul>
-     </div>                   
-    </div>
-   </div>
-   <?php } else{ } if ($PermReteste === "9") { ?>
-   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="box box-widget widget-user">
-     <div class="info-box">
-      <a href="P2/Reteste.php" >
-       <span class="info-box-icon btn-warning">
-        <i class="fa fa-refresh"></i>
-       </span>
-      </a>
-      <div class="info-box-content"><h4>CONTROLE DE RETESTE</h4></div>
-     </div>
-     <div class="box-footer no-padding">
-      <ul class="nav nav-stacked">
-       <li>
-        <a>Pendentes Acesso<span class="pull-right badge bg-green">
-         <?php echo $QntRetesteAcesso; ?></span></a>
-       </li>
-       <li>
-        <a>Pendentes 1510<span class="pull-right badge bg-red">
-        <?php echo $QntReteste1510; ?></span></a>
-       </li>
-       <li>
-        <a>Pendentes 373 <span class="pull-right badge bg-blue">
-        <?php echo $QntReteste373; ?>
-        </span></a>
-       </li>
-      </ul>
-     </div>                   
-    </div>
-   </div>
-   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="box box-widget widget-user">
-     <div class="info-box">
-      <a href="P2/QuantGeral.php" >
-       <span class="info-box-icon bg-navy">
-        <i class="fa fa-server"></i>
-       </span>
-      </a>
-      <div class="info-box-content"><h4>QUANTIDADE GERAL</h4></div>
-     </div>
-     <div class="box-footer no-padding">
-      <ul class="nav nav-stacked">
-       <li>
-        <a>Acesso<span class="pull-right badge bg-green">
-         <?php echo $QntGeralAcesso; ?></span></a>
-       </li>
-        <li>
-        <a>Ponto 1510/INMETRO<span class="pull-right badge bg-red">
-        <?php echo $QntGeral1510; ?></span></a>
-       </li>
-        <li>
-        <a>Ponto 373 <span class="pull-right badge bg-blue">
-         <?php echo $QntGeral373; ?>
-        </span></a>
-        </li>
-      </ul>
-     </div>                   
-    </div>
-   </div>
-   <div class="col-md-3">
-    <div class="box box-widget widget-user">
-     <div class="info-box">
-      <a href="Imprime/dashboard.php" >
-       <span class="info-box-icon bg-olive">
-        <i class="fa fa-print"></i>
-       </span>
-      </a>
-      <div class="info-box-content"><h4>IMPRIMIR</h4></div>
+      <div class="info-box-content"><h4>ATENDIMENTOS</h4></div>
      </div>                  
     </div>
-   </div>
-   <?php } else{ } if ($Catraca === "9") { ?>
-   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="info-box">
-     <a href="Cat/dashboard.php" >
-      <span class="info-box-icon btn-danger">
-       <i class="fa fa-map-signs"></i></span>
-     </a>
-     <div class="info-box-content"><h4>Catracas</h4></div>
-    </div>
-   </div><!-- CLASS ROW -->
-   <?php } else{ } if ($PermAdm === "9") { ?>
-   <div class="col-md-3">
+   </div> 
+   <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="box box-widget widget-user">
      <div class="info-box">
-      <a href="adm/usuarios.php" >
-       <span class="info-box-icon bg-purple">
+      <a href="revendas/dashboard.php" >
+       <span class="info-box-icon bg-aqua">
+        <i class="fa fa-newspaper-o"></i>
+       </span>
+      </a>
+      <div class="info-box-content"><h4>CADASTRO DE REVENDAS</h4></div>
+     </div>                  
+    </div>
+   </div> 
+   <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="box box-widget widget-user">
+     <div class="info-box">
+      <a href="engenharia/dashboard.php" >
+       <span class="info-box-icon bg-aqua">
+        <i class="fa fa-file-code-o"></i>
+       </span>
+      </a>
+      <div class="info-box-content"><h4>DOCUMENTAÇÃO</h4></div>
+     </div>                  
+    </div>
+   </div>    
+   <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="box box-widget widget-user">
+     <div class="info-box">
+      <a href="relatorios/dashboard.php" >
+       <span class="info-box-icon bg-aqua">
+        <i class="fa fa-pie-chart"></i>
+       </span>
+      </a>
+      <div class="info-box-content"><h4>RELATÓRIOS</h4></div>
+     </div>                  
+    </div>
+   </div> 
+   <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="box box-widget widget-user">
+     <div class="info-box">
+      <a href="usuarios/dashboard.php" >
+       <span class="info-box-icon bg-aqua">
         <i class="fa fa-users"></i>
        </span>
       </a>
       <div class="info-box-content"><h4>USUÁRIOS</h4></div>
      </div>                  
     </div>
-   </div>
-   <?php } else{ } if ($Plaudo === "9") { ?>
-   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="info-box">
-     <a href="almox/dashboard.php" >
-      <span class="info-box-icon btn-danger">
-       <i class="fa fa-clipboard"></i></span>
-     </a>
-     <div class="info-box-content"><h4>Laudos de teste</h4></div>
-    </div>
-   </div><!-- CLASS ROW -->
-   <?php } else{ } ?>
-   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="box box-widget widget-user">
-     <div class="info-box">
-      <a href="pedidos/dashboard.php" >
-       <span class="info-box-icon bg-aqua">
-        <i class="fa fa-newspaper-o"></i>
-       </span>
-      </a>
-      <div class="info-box-content"><h4>PEDIDOS</h4></div>
-     </div>                  
-    </div>
    </div> 
+
  </section>
 </div><!-- CONTENT-WRAPPER -->
 <?php include_once 'footer.php'; ?>
