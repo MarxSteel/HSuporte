@@ -1,12 +1,37 @@
 <?php 
 $server = 'http://localhost:8888/RastreiaLaudo';
-$endereco = $_SERVER ['REQUEST_URI']; 
+$endereco = $_SERVER ['SERVER_ADDR']; 
 ?>
 <ul class="sidebar-menu">
  <li class="header"></li>
   <li class="<?php echo $cHome; ?>">
-   <a href="<?php echo $server; ?>/dashboard.php">
+   <a href="<?php echo $endereco; ?>/dashboard.php">
     <i class="fa fa-home"></i> <span>Início</span>
+   </a>
+  </li>
+  <li class="<?php echo $cHome; ?>">
+   <a href="<?php echo $server; ?>/dashboard.php">
+    <i class="fa fa-home"></i> <span>Atendimentos</span>
+   </a>
+  </li>
+  <li class="<?php echo $cHome; ?>">
+   <a href="<?php echo $server; ?>/dashboard.php">
+    <i class="fa fa-home"></i> <span>Cadastro de Revendas</span>
+   </a>
+  </li>
+  <li class="<?php echo $cHome; ?>">
+   <a href="<?php echo $server; ?>/dashboard.php">
+    <i class="fa fa-home"></i> <span>Documentação</span>
+   </a>
+  </li>
+  <li class="<?php echo $cHome; ?>">
+   <a href="<?php echo $server; ?>/dashboard.php">
+    <i class="fa fa-home"></i> <span>Relatório</span>
+   </a>
+  </li>
+  <li class="<?php echo $cHome; ?>">
+   <a href="<?php echo $server; ?>/dashboard.php">
+    <i class="fa fa-home"></i> <span>Usuários</span>
    </a>
   </li>
   <?php if ($PermMontagem == "9") { ?> 
