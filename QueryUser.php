@@ -3,6 +3,6 @@
  $query->execute();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
-
+  $edFw = $row['edFw'];
 
 ?>
