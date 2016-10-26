@@ -5,13 +5,6 @@ $cMeus = "active";
 $PDO = db_connect();
 require_once '../QueryUser.php';
 require_once '../queryDashboard.php';
-
-//CHAMANDO FIRMWARE
-$chfw = "SELECT * FROM firmware ORDER BY id DESC";
-$fw = $PDO->prepare($chfw);
-$fw->execute();
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,7 +72,7 @@ $fw->execute();
    <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">
      <a data-toggle="modal" data-target="#nfw"">
-      <span class="info-box-icon bg-purple">
+      <span class="info-box-icon bg-red">
        <i class="fa fa-plus"></i>
       </span>
      </a>
@@ -89,7 +82,7 @@ $fw->execute();
    <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">
      <a data-toggle="modal" data-target="#nmanual"">
-      <span class="info-box-icon bg-navy">
+      <span class="info-box-icon bg-green">
        <i class="fa fa-plus"></i>
       </span>
      </a>
@@ -99,7 +92,7 @@ $fw->execute();
     <div class="col-md-4 col-sm-6 col-xs-12">
      <div class="info-box">
       <a data-toggle="modal" data-target="#NovoProduto"">
-       <span class="info-box-icon bg-purple">
+       <span class="info-box-icon bg-blue">
         <i class="fa fa-plus"></i>
        </span>
       </a>
@@ -109,73 +102,16 @@ $fw->execute();
    <div class="col-md-8">
     <div class="nav-tabs-custom">
      <ul class="nav nav-tabs pull-right">
-      <li class="active"><a href="#pendente" data-toggle="tab">FIRMWARE</a></li>
-      <li><a href="#final" data-toggle="tab">MANUAIS</a></li>
+      <li class="active"><a href="#firmware" data-toggle="tab">FIRMWARE</a></li>
+      <li><a href="#manual" data-toggle="tab">MANUAIS</a></li>
      </ul>
      <div class="tab-content">
-      <div class="tab-pane active" id="pendente">
-       <table id="tabFin" class="table table-hover table-responsive">
-        <thead>
-         <tr>
-          <td>#</td>
-          <td>Modelo</td>
-          <td>Versão</td>
-          <td>Release</td>
-          <td></td>
-         </tr>
-        </thead>
-        <tbody>
-        <?php while ($f = $fw->fetch(PDO::FETCH_ASSOC)): 
-        echo '<tr>';
-         echo '<td>' . $f["id"] . '</td>';
-         echo '<td>' . $f["Modelo"] . '</td>';
-         echo '<td>' . $f["Versao"] . '</td>';
-         echo '<td class="texto">' . $f["Obs"] . '</td>';
-         echo '<td>';
-         $Arquivo = $f["file"];
-         echo '<a href="uploads/' . $Arquivo . ' " target="_blank" class="btn btn-default btn-xs"><i class="fa fa-download"></i> BAIXAR </a>';
-         echo '</td>';
-
-        echo '</tr>';
-          endwhile;
-        ?>
-        </tbody>
-       </table>
+      <div class="tab-pane active" id="firmware">
+      <?php include_once 'tabelaFw.php'; ?>
       </div>
-      <div class="tab-pane" id="final">
-       <table id="tabPen" class="table table-hover table-responsive">
-        <thead>
-         <tr>
-          <td>User</td>
-          <td>Data pedido</td>
-          <td>Prazo</td>
-          <td>Modelo</td>
-          <td>Quant</td>
-          <td>Obs</td>
-         </tr>
-        </thead>
-        <tbody>
-        <?php while ($f = $fw->fetch(PDO::FETCH_ASSOC)): 
-         echo '<tr>';
-          echo '<td>' . $f["id"] . '</td>';
-           echo '<td>' . $f["Modelo"] . '</td>';
-           echo '<td>' . $f["id"] . '</td>';
-           echo '<td>' . $f["id"] . '</td>';
-           echo '<td>' . $f["id"] . '</td>';
-           echo '<td class="texto">' . $f["id"] . '</td>';
-            if ($PermReteste === "9") {
-             echo '<td><a class="btn btn-success btn-block btn-xs" href="';
-             echo "javascript:abrir('Finaliza.php?ID=" . $f["id"] . "');";
-             echo '"><i class="fa fa-search"> </i></a></td>';           
-            } else
-            {
-              echo '<td></td>';
-            }
-              echo '</tr>';
-            endwhile;
-        ?>
-           </tbody>
-          </table>
+      <div class="tab-pane" id="manual">
+        <?php include_once 'tabelaManual.php'; ?>
+
          </div>
         </div>
        </div>
@@ -208,7 +144,7 @@ $fw->execute();
 <script src="../dist/js/demo.js"></script>
 <script>
   $(function () {
-    $('#cadREP').DataTable({
+    $('#tabfw').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": true,
@@ -216,9 +152,14 @@ $fw->execute();
       "info": true,
       "autoWidth": true
     });
-    $("#cad373").DataTable();
-    $("#cadACESSO").DataTable();
-    $("#carto").DataTable();
+    $('#tabMan').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
   });
 </script>
 <script language="JavaScript">
@@ -228,18 +169,6 @@ function abrir(URL) {
   var left = 99;
   var top = 99;
   window.open(URL,'janela', 'width='+width+', height='+height+', top='+top+', left='+left+', scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no');
-}
-</script>
-<script>
-function formatar(mascara, documento){
-  var i = documento.value.length;
-  var saida = mascara.substring(0,1);
-  var texto = mascara.substring(i)
-  
-  if (texto.substring(0,1) != saida){
-            documento.value += texto.substring(0,1);
-  }
-  
 }
 </script>
 </html>
