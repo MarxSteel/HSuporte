@@ -11,7 +11,7 @@ define('DB_USER', $user);
 define('DB_PASS', $pass);
 define('DB_NAME', $banco);
 
-
+$titulo = "Henry Equipamentos e Sistemas";
 
 //AQUI EU DECLARO A FUNÇÃO DE CHAMAR PORCENTAGEM
 // Y É X% DE Z
